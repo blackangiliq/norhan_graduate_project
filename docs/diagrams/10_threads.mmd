@@ -1,0 +1,19 @@
+flowchart LR
+  subgraph GUI["خيط الواجهة (Qt Main Thread)"]
+    G1["أزرار ونوافذ"]
+    G2["مؤقت 0.5s: تحديث الإحصائيات والرسوم"]
+  end
+  subgraph ENGINE["محرك المكالمة CallSession"]
+    CT["خيط التحكم control<br/>TCP + Handshake + CHAT/MUTE/BYE"]
+    TX["خيط الإرسال sender<br/>ترميز → تشفير → UDP"]
+    RX["خيط الاستقبال receiver<br/>UDP → تحقق → فك → Jitter"]
+  end
+  subgraph AUDIO["مكتبة الصوت PortAudio"]
+    MIC["callback الالتقاط<br/>every 20 ms"]
+    SPK["callback التشغيل<br/>every 20 ms"]
+  end
+  MIC -- "Queue" --> TX
+  RX -- "JitterBuffer" --> SPK
+  CT -- "Qt Signal (أحداث)" --> GUI
+  G1 -- "start / hangup / chat / attack" --> ENGINE
+  G2 -- "snapshot()" --> ENGINE

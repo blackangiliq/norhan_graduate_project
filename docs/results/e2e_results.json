@@ -1,0 +1,41 @@
+[
+  {
+    "cipher": "Ascon-128",
+    "handshake_ms": 26.333618000080605,
+    "rx_packets": 501,
+    "lost": 0,
+    "auth_failures": 0,
+    "enc_us": 1341.2798962081392,
+    "dec_us": 1471.7069660639638,
+    "rtt_ms": 2.3781814978877787,
+    "jitter_ms": 0.21785539218158279,
+    "frames_bit_exact": 499,
+    "duration_s": 10.022737741470337
+  },
+  {
+    "cipher": "ChaCha20-Poly1305",
+    "handshake_ms": 21.488237000085064,
+    "rx_packets": 502,
+    "lost": 0,
+    "auth_failures": 0,
+    "enc_us": 25.22729880638508,
+    "dec_us": 19.131856568010445,
+    "rtt_ms": 0.45118355663834714,
+    "jitter_ms": 0.17827549164519887,
+    "frames_bit_exact": 499,
+    "duration_s": 10.028135538101196
+  },
+  {
+    "cipher": "AES-128-GCM",
+    "handshake_ms": 17.727867000076003,
+    "rx_packets": 502,
+    "lost": 0,
+    "auth_failures": 0,
+    "enc_us": 26.683575692026267,
+    "dec_us": 17.051513948508475,
+    "rtt_ms": 1.0144563653075442,
+    "jitter_ms": 0.28056935933597316,
+    "frames_bit_exact": 499,
+    "duration_s": 10.032070398330688
+  }
+]

@@ -1,0 +1,14 @@
+flowchart LR
+  subgraph INIT["1️⃣ التهيئة Initialization"]
+    I0["State 320-bit<br/>IV ‖ K ‖ N"] --> I1["p¹² (12 جولة)"] --> I2["⊕ (0…0 ‖ K)"]
+  end
+  subgraph AD["2️⃣ البيانات المرافقة (الترويسة)"]
+    A1["A₁ ⊕ x₀"] --> A2["p⁶"] --> A3["… Aₛ"] --> A4["⊕ 1 (فصل المجال)"]
+  end
+  subgraph PT["3️⃣ تشفير الصوت"]
+    P1["P₁ ⊕ x₀ → C₁"] --> P2["p⁶"] --> P3["P₂ ⊕ x₀ → C₂"] --> P4["…  Pₜ → Cₜ"]
+  end
+  subgraph FIN["4️⃣ الإنهاء Finalization"]
+    F1["⊕ (0⁶⁴ ‖ K ‖ 0…)"] --> F2["p¹² (12 جولة)"] --> F3["Tag = x₃‖x₄ ⊕ K<br/>128-bit"]
+  end
+  INIT --> AD --> PT --> FIN

@@ -1,0 +1,27 @@
+flowchart LR
+  subgraph A["💻 الجهاز A — المستقبل (Responder)"]
+    direction TB
+    A1["🎤 الميكروفون<br/>Microphone"] --> A2["تقطيع إلى إطارات صوتية<br/>Framing 320 samples @16kHz"]
+    A2 --> A3["ترميز الصوت<br/>PCM16 / G.711 μ-law"]
+    A3 --> A4["🔐 تشفير موثّق<br/>Ascon-128 AEAD"]
+    A8["🔓 فك التشفير + التحقق من الوسم<br/>Decrypt + Verify Tag"] --> A9["مخزن الارتعاش<br/>Jitter Buffer + PLC"]
+    A9 --> A10["🔊 السماعة<br/>Speaker"]
+    A11["🖥 الواجهة الرسومية<br/>PySide6 GUI"]
+  end
+  subgraph N["🌐 الشبكة المحلية LAN / Wi-Fi"]
+    direction TB
+    T["قناة التحكم TCP :5000<br/>Handshake + Encrypted Control"]
+    U["قناة الوسائط UDP :5001<br/>Encrypted Voice Packets"]
+  end
+  subgraph B["💻 الجهاز B — المتصل (Initiator)"]
+    direction TB
+    B1["🎤 الميكروفون"] --> B4["🔐 تشفير Ascon-128"]
+    B8["🔓 فك التشفير + التحقق"] --> B10["🔊 السماعة"]
+    B11["🖥 الواجهة الرسومية"]
+  end
+  A4 -- "UDP" --> U
+  U -- "UDP" --> B8
+  B4 -- "UDP" --> U
+  U -- "UDP" --> A8
+  A11 <--> T
+  T <--> B11

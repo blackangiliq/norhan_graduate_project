@@ -1,0 +1,22 @@
+sequenceDiagram
+  autonumber
+  participant B as 💻 الجهاز B (المتصل)
+  participant A as 💻 الجهاز A (المستقبل)
+  Note over A: يستمع على TCP 5000
+  B->>A: اتصال TCP (3-way handshake)
+  Note over B: يولّد مفتاح X25519 مؤقت (b, B=b·G)<br/>+ رقم عشوائي Rc (16B)
+  B->>A: ClientHello { SVC1, v1, cipher=Ascon-128, codec, UDP port, Rc, B_pub }
+  Note over A: يولّد مفتاح X25519 مؤقت (a, A=a·G)<br/>+ رقم عشوائي Rs (16B)
+  A->>B: ServerHello { SVC1, v1, cipher, codec, UDP port, Rs, A_pub }
+  Note over A,B: كلا الطرفين يحسب بشكل مستقل (لا يُرسل أي سر):<br/>shared = X25519(priv, peer_pub)<br/>PSK = PBKDF2(password, Rc‖Rs, 100000)<br/>transcript = SHA-256(ClientHello‖ServerHello)<br/>master = HKDF-Extract(PSK, shared)<br/>keys = HKDF-Expand(master, "SecureVoice v1 keys"‖transcript)
+  B->>A: Client Finished = HMAC(confirm_key, "client finished"‖transcript)
+  alt كلمة السر صحيحة
+    A->>B: Server Finished = HMAC(confirm_key, "server finished"‖transcript)
+    Note over A,B: ✅ جلسة آمنة — عرض رمز الأمان SAS على الشاشتين
+    B-->>A: حزم صوت مشفرة UDP - 50 حزمة في الثانية
+    A-->>B: حزم صوت مشفرة UDP - 50 حزمة في الثانية
+    B->>A: رسائل تحكم مشفرة TCP (CHAT / MUTE / BYE)
+  else كلمة سر خاطئة أو رجل في المنتصف
+    A->>B: ERROR (bad password)
+    Note over A,B: ❌ قطع الاتصال — لا مفاتيح ولا صوت
+  end

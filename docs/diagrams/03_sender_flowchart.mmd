@@ -1,0 +1,18 @@
+flowchart TD
+  S([بداية: إطار جديد من الميكروفون<br/>every 20 ms]) --> Q[وضع الإطار في طابور الالتقاط<br/>Capture Queue]
+  Q --> L[قياس مستوى الصوت dB]
+  L --> M{هل الميكروفون مكتوم؟}
+  M -- نعم --> Z[استبدال الإطار بصمت<br/>640 بايت أصفار]
+  M -- لا --> E
+  Z --> E[ترميز الإطار<br/>PCM16 → 640B أو μ-law → 320B]
+  E --> SEQ[زيادة رقم التسلسل seq += 1<br/>وزيادة رقم الإطار frame += 1]
+  SEQ --> H[بناء الترويسة 10 بايت<br/>ver‖type‖seq‖frame]
+  H --> N[حساب Nonce = IV_tx XOR seq]
+  N --> ENC[🔐 التشفير الموثّق<br/>C‖Tag = Ascon-128.Enc K_tx, Nonce, AD=Header, Payload]
+  ENC --> P[الحزمة = Header ‖ Ciphertext ‖ Tag 16B]
+  P --> SEND[إرسال عبر UDP إلى IP:Port الطرف الآخر]
+  SEND --> ST[تحديث الإحصائيات<br/>عدد الحزم، البايتات، زمن التشفير]
+  ST --> PING{مرّت ثانية منذ آخر PING؟}
+  PING -- نعم --> PG[إرسال PING مشفر لقياس RTT]
+  PING -- لا --> S
+  PG --> S

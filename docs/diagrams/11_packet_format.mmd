@@ -1,0 +1,7 @@
+packet-beta
+  0-7: "Version (1)"
+  8-15: "Type (1=VOICE 2=PING 3=PONG)"
+  16-47: "Sequence Number (32-bit) → Nonce"
+  48-79: "Frame Number / Timestamp (32-bit)"
+  80-111: "Ciphertext (Encrypted voice: 640B PCM / 320B μ-law) ..."
+  112-239: "Authentication Tag (128-bit)"

@@ -1,0 +1,79 @@
+{
+  "platform": "Linux 6.18.44-fc-v378 | x86_64",
+  "python": "3.13.18",
+  "iterations": 400,
+  "results": [
+    {
+      "cipher": "Ascon-128",
+      "frame_bytes": 320,
+      "enc_us": 652.599205000115,
+      "dec_us": 602.9988649999041,
+      "throughput_mbps": 3.9227752353752083,
+      "overhead_bytes": 16,
+      "frame_budget_pct": 6.277990350000094,
+      "key_bits": 128,
+      "nonce_bits": 128,
+      "lightweight": true
+    },
+    {
+      "cipher": "ChaCha20-Poly1305",
+      "frame_bytes": 320,
+      "enc_us": 1.6805300003852608,
+      "dec_us": 1.6012449998470402,
+      "throughput_mbps": 1523.3289494463775,
+      "overhead_bytes": 16,
+      "frame_budget_pct": 0.016408875001161505,
+      "key_bits": 256,
+      "nonce_bits": 96,
+      "lightweight": true
+    },
+    {
+      "cipher": "AES-128-GCM",
+      "frame_bytes": 320,
+      "enc_us": 0.5780825000556433,
+      "dec_us": 0.550769999563272,
+      "throughput_mbps": 4428.433657399397,
+      "overhead_bytes": 16,
+      "frame_budget_pct": 0.005644262498094577,
+      "key_bits": 128,
+      "nonce_bits": 96,
+      "lightweight": false
+    },
+    {
+      "cipher": "Ascon-128",
+      "frame_bytes": 640,
+      "enc_us": 1105.6470224997383,
+      "dec_us": 1134.5670000002883,
+      "throughput_mbps": 4.630772656922893,
+      "overhead_bytes": 16,
+      "frame_budget_pct": 11.201070112500135,
+      "key_bits": 128,
+      "nonce_bits": 128,
+      "lightweight": true
+    },
+    {
+      "cipher": "ChaCha20-Poly1305",
+      "frame_bytes": 640,
+      "enc_us": 1.7881475002923253,
+      "dec_us": 1.7471899997190121,
+      "throughput_mbps": 2863.2984690373614,
+      "overhead_bytes": 16,
+      "frame_budget_pct": 0.017676687500056687,
+      "key_bits": 256,
+      "nonce_bits": 96,
+      "lightweight": true
+    },
+    {
+      "cipher": "AES-128-GCM",
+      "frame_bytes": 640,
+      "enc_us": 0.5700050002133139,
+      "dec_us": 0.563207499908458,
+      "throughput_mbps": 8982.377344205637,
+      "overhead_bytes": 16,
+      "frame_budget_pct": 0.0056660625006088585,
+      "key_bits": 128,
+      "nonce_bits": 96,
+      "lightweight": false
+    }
+  ]
+}

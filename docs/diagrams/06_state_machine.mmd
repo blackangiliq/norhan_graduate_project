@@ -1,0 +1,17 @@
+stateDiagram-v2
+  [*] --> idle: تشغيل البرنامج
+  idle --> listening: بدء الاستقبال (A)
+  idle --> connecting: اتصال (B)
+  listening --> handshake: وصول اتصال TCP
+  connecting --> handshake: نجاح اتصال TCP
+  connecting --> ended: فشل الاتصال / مهلة
+  handshake --> in_call: Finished MAC صحيح
+  handshake --> ended: كلمة سر خاطئة / MITM
+  in_call --> ended: إنهاء / BYE / انقطاع
+  listening --> ended: إلغاء
+  ended --> listening: بدء جديد
+  ended --> connecting: اتصال جديد
+  note right of in_call
+    صوت مشفر UDP في الاتجاهين
+    رسائل تحكم مشفرة TCP
+  end note

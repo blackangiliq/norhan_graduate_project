@@ -1,0 +1,16 @@
+flowchart TD
+  PW["🔑 كلمة السر المشتركة<br/>Password"] --> PB["PBKDF2-HMAC-SHA256<br/>100,000 تكرار<br/>salt = 'SecureVoice-PSK' ‖ Rc ‖ Rs"]
+  PB --> PSK["PSK (32 بايت)"]
+  XA["مفتاح A الخاص المؤقت a"] --> DH["X25519 ECDH<br/>shared = a·B = b·A"]
+  XB["مفتاح B العام B = b·G"] --> DH
+  DH --> SH["السر المشترك shared (32 بايت)"]
+  CH["ClientHello ‖ ServerHello"] --> TH["SHA-256 → transcript hash"]
+  PSK --> EX["HKDF-Extract<br/>master = HMAC(PSK, shared)"]
+  SH --> EX
+  EX --> EP["HKDF-Expand(master, 'SecureVoice v1 keys' ‖ transcript)<br/>→ 264 بايت"]
+  TH --> EP
+  EP --> K1["مفتاح صوت B→A + IV"]
+  EP --> K2["مفتاح صوت A→B + IV"]
+  EP --> K3["مفتاحا التحكم + IV"]
+  EP --> K4["مفتاح التأكيد confirm<br/>(Finished MAC)"]
+  EP --> K5["رمز الأمان SAS<br/>6 أرقام"]
