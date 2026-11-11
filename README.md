@@ -18,16 +18,17 @@
 
 1. [ما هو المشروع؟](#-ما-هو-المشروع)
 2. [المميزات](#-المميزات)
-3. [صور البرنامج](#-صور-البرنامج)
-4. [التشغيل السريع على Windows (خطوة بخطوة)](#-التشغيل-السريع-على-windows-خطوة-بخطوة)
-5. [كيفية الاتصال بين الجهازين](#-كيفية-الاتصال-بين-الجهازين)
-6. [كيف يعمل النظام؟ (المخططات)](#-كيف-يعمل-النظام-المخططات)
-7. [طريقة نقل الصوت وتشفيره والقناة الناقلة](#-طريقة-نقل-الصوت-وتشفيره-والقناة-الناقلة)
-8. [النتائج والقياسات](#-النتائج-والقياسات)
-9. [الاختبارات](#-الاختبارات)
-10. [هيكل المشروع](#-هيكل-المشروع)
-11. [التوثيق الكامل](#-التوثيق-الكامل)
-12. [حل المشاكل](#-حل-المشاكل-الشائعة)
+3. [🎓 عرض المشرف (Presentation)](#-عرض-المشرف-presentation)
+4. [صور البرنامج](#-صور-البرنامج)
+5. [التشغيل السريع على Windows (خطوة بخطوة)](#-التشغيل-السريع-على-windows-خطوة-بخطوة)
+6. [كيفية الاتصال بين الجهازين](#-كيفية-الاتصال-بين-الجهازين)
+7. [كيف يعمل النظام؟ (المخططات)](#-كيف-يعمل-النظام-المخططات)
+8. [طريقة نقل الصوت وتشفيره والقناة الناقلة](#-طريقة-نقل-الصوت-وتشفيره-والقناة-الناقلة)
+9. [النتائج والقياسات](#-النتائج-والقياسات)
+10. [الاختبارات](#-الاختبارات)
+11. [هيكل المشروع](#-هيكل-المشروع)
+12. [التوثيق الكامل](#-التوثيق-الكامل)
+13. [حل المشاكل](#-حل-المشاكل-الشائعة)
 
 ---
 
@@ -64,6 +65,41 @@
 - ⚡ **مقارنة أداء الخوارزميات** مدمجة في البرنامج.
 - 🎵 **نغمة اختبار** بدل الميكروفون (للعرض على جهاز بدون ميكروفون).
 - ✅ **48 اختباراً آلياً** تشمل مكالمات حقيقية عبر الشبكة.
+
+---
+
+## 🎓 عرض المشرف (Presentation)
+
+عرض تقديمي كامل من **23 شريحة** يلخص المشروع بكل تفاصيله الدقيقة: المشكلة، الأهداف، لماذا Ascon، المعمارية، القناة الناقلة،
+المصافحة واشتقاق المفاتيح، مسار الصوت وتشفيره، بنية الحزمة، Ascon من الداخل، التحليل الأمني، البرنامج، الاختبارات، النتائج، التسليمات، وخطة العرض أمام اللجنة.
+
+| الملف | الوصف |
+|---|---|
+| 📊 [**SecureVoice_Supervisor_Presentation.pptx**](docs/presentation/SecureVoice_Supervisor_Presentation.pptx) | ملف PowerPoint قابل للتعديل (عربي، 16:9) مع ملاحظات للمقدّم |
+| 📄 [**SecureVoice_Supervisor_Presentation.pdf**](docs/presentation/SecureVoice_Supervisor_Presentation.pdf) | نسخة PDF للاطلاع السريع أو الإرسال للمشرف |
+
+> ✏️ في الشريحة الأولى املأ حقلي «إعداد» و«إشراف» بالأسماء قبل الإرسال.
+> لإعادة توليد العرض بعد أي تعديل: `node tools/build_presentation.js` (يحتاج `npm install pptxgenjs react-icons react react-dom sharp`).
+
+<details>
+<summary><b>👁 معاينة جميع الشرائح (اضغط للعرض)</b></summary>
+
+| | |
+|---|---|
+| **1. العنوان**<br/>![](docs/presentation/slides/slide-01.jpg) | **2. محاور العرض**<br/>![](docs/presentation/slides/slide-02.jpg) |
+| **3. المشكلة**<br/>![](docs/presentation/slides/slide-03.jpg) | **4. الأهداف وحالة الإنجاز**<br/>![](docs/presentation/slides/slide-04.jpg) |
+| **5. لماذا Ascon-128؟**<br/>![](docs/presentation/slides/slide-05.jpg) | **6. معمارية النظام**<br/>![](docs/presentation/slides/slide-06.jpg) |
+| **7. الطبقات والخيوط**<br/>![](docs/presentation/slides/slide-07.jpg) | **8. القناة الناقلة (TCP/UDP)**<br/>![](docs/presentation/slides/slide-08.jpg) |
+| **9. المصافحة**<br/>![](docs/presentation/slides/slide-09.jpg) | **10. اشتقاق المفاتيح**<br/>![](docs/presentation/slides/slide-10.jpg) |
+| **11. مسار الصوت وتشفيره**<br/>![](docs/presentation/slides/slide-11.jpg) | **12. بنية حزمة الصوت**<br/>![](docs/presentation/slides/slide-12.jpg) |
+| **13. Ascon-128 من الداخل**<br/>![](docs/presentation/slides/slide-13.jpg) | **14. التحليل الأمني**<br/>![](docs/presentation/slides/slide-14.jpg) |
+| **15. واجهة البرنامج**<br/>![](docs/presentation/slides/slide-15.jpg) | **16. محاكاة الهجمات**<br/>![](docs/presentation/slides/slide-16.jpg) |
+| **17. الاختبارات (48/48)**<br/>![](docs/presentation/slides/slide-17.jpg) | **18. أداء التشفير**<br/>![](docs/presentation/slides/slide-18.jpg) |
+| **19. نتائج المكالمات الحقيقية**<br/>![](docs/presentation/slides/slide-19.jpg) | **20. التسليمات**<br/>![](docs/presentation/slides/slide-20.jpg) |
+| **21. خطة العرض أمام اللجنة**<br/>![](docs/presentation/slides/slide-21.jpg) | **22. القيود والأعمال المستقبلية**<br/>![](docs/presentation/slides/slide-22.jpg) |
+| **23. الخلاصة**<br/>![](docs/presentation/slides/slide-23.jpg) |  |
+
+</details>
 
 ---
 
@@ -370,7 +406,7 @@ norhan_graduate_project/
 │   ├── cli.py                    ← تشغيل من سطر الأوامر
 │   └── gui/                      ← الواجهة الرسومية (PySide6)
 ├── tests/                        ← 48 اختباراً آلياً
-├── tools/                        ← توليد الصور والرسوم البيانية
+├── tools/                        ← توليد الصور والرسوم البيانية وعرض المشرف
 ├── assets/                       ← أيقونة البرنامج
 └── docs/                         ← التوثيق الكامل + المخططات + الصور + النتائج
 ```
@@ -395,6 +431,7 @@ norhan_graduate_project/
 | 10 | [دليل العرض أمام اللجنة](docs/10_committee_demo_guide.md) | سيناريو العرض دقيقة بدقيقة + أسئلة متوقعة وأجوبتها |
 | 11 | [شرح الكود ملفاً ملفاً](docs/11_code_walkthrough.md) | شرح كل ملف ودالة مهمة |
 | 12 | [هيكل تقرير التخرج والمراجع](docs/12_report_outline.md) | فصول التقرير المقترحة والمراجع العلمية |
+| 🎓 | [عرض المشرف PowerPoint](docs/presentation/SecureVoice_Supervisor_Presentation.pptx) / [PDF](docs/presentation/SecureVoice_Supervisor_Presentation.pdf) | 23 شريحة تلخص المشروع بالكامل |
 
 ---
 
